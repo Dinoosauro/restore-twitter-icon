@@ -11,7 +11,7 @@ let maxinumTries = 0;
 function checkIfFullyLoaded() {
     // Change the Twitter logo on the toolbar
     if (maxinumTries > 50) return;
-    if (document.querySelector("[href='/home']") === null) setTimeout(() => { checkIfFullyLoaded(); maxinumTries++}, 150); else {replaceIcon(); checkArticle();}
+    if (document.querySelector("[href='/home']") === null) setTimeout(() => { checkIfFullyLoaded(); maxinumTries++}, 150); else {replaceIcon(); checkArticle(); addObserver();}
 }
 checkIfFullyLoaded();
 for (let item of document.querySelectorAll("svg")) if (item.innerHTML.indexOf("M14.258 10.152L23") !== -1) item.innerHTML = oldTwitterSvg; // Change the placeholder
@@ -21,4 +21,11 @@ function changeFavicon() {
 changeFavicon();
 function checkArticle() {
     if (document.querySelectorAll("article").length === 0) setTimeout(() => {checkArticle()}, 150); else changeFavicon();
+}
+function addObserver() {
+    if (document.title.endsWith("/ X")) document.title = `${document.title.substring(0, document.title.lastIndexOf("/ X"))}/ Twitter`;
+    let observer = new MutationObserver(() => {
+            if (document.title.endsWith("/ X")) document.title = `${document.title.substring(0, document.title.lastIndexOf("/ X"))}/ Twitter`;
+    });
+    observer.observe(document.querySelector('head > title'), { subtree: true, characterData: true, childList: true });
 }

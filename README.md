@@ -8,5 +8,6 @@ You can check the source code if (understandably) you don't want to trust someon
 ## Trademarks
 This extension has no affiliation with Twitter and X. Corp.
 ## Update history
+- 1.0.2: Replace "X" with "Twitter" on the tab name
 - 1.0.1: Update also Twitter's favicon
 - 1.0.0: First release
