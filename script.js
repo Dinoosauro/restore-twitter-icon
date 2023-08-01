@@ -3,8 +3,8 @@ let oldTwitterSvg = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve
 </svg>`;
 function replaceIcon() {
     let replaceItem = document.querySelector("[href='/home']").childNodes[0];
-    document.querySelector("[href='/home']").style = "display: flex; align-items: center; justify-content: center; margin-top: 15px;"
-    replaceItem.style = "width: 30px; height: 50px;";
+    document.querySelector("[href='/home']").style = "display: flex; align-items: center; justify-content: center; margin-top: 15px; border: 0px;"
+    replaceItem.style = "width: 30px; height: 50px; border: 0px;";
     replaceItem.innerHTML = oldTwitterSvg;
 }
 let maxinumTries = 0;
@@ -33,7 +33,7 @@ function checkArticle() {
 function addObserver() {
     if (document.title.endsWith("/ X")) document.title = `${document.title.substring(0, document.title.lastIndexOf("/ X"))}/ Twitter`;
     let observer = new MutationObserver(() => {
-            if (document.title.endsWith("/ X")) document.title = `${document.title.substring(0, document.title.lastIndexOf("/ X"))}/ Twitter`;
+            if (document.title.endsWith("/ X")) document.title = `${document.title.substring(0, document.title.lastIndexOf("/ X"))}/ Twitter`; else if (document.title === "X") document.title = "Twitter";
     });
     observer.observe(document.querySelector('head > title'), { subtree: true, characterData: true, childList: true });
 }

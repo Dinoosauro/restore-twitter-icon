@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Restore Twitter Icon",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Restore the old Twitter icon on the website",
     "content_scripts": [
         {
