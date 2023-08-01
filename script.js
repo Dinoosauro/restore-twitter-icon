@@ -16,7 +16,16 @@ function checkIfFullyLoaded() {
 checkIfFullyLoaded();
 for (let item of document.querySelectorAll("svg")) if (item.innerHTML.indexOf("M14.258 10.152L23") !== -1) item.innerHTML = oldTwitterSvg; // Change the placeholder
 function changeFavicon() {
-    for (let item of document.querySelectorAll('link[rel*="icon"]')) item.href = `data:image/svg+xml,${oldTwitterSvg.replace(/\"/g, '%22').replace(/\#/g, '%23')}`;
+    let img = document.createElement("img");
+    img.onload = () => {
+        let canvas = document.createElement("canvas");
+        canvas.width = "128";
+        canvas.height = "128";
+        canvas.getContext("2d").drawImage(img, 0,11, 128, 105); // The svg is not a square, so a proprortion needs to be made (128 : 105). Then, to center the icon: (128-105)/2
+        console.log(canvas, canvas.toDataURL("image/png"));
+        for (let item of document.querySelectorAll('link[rel*="icon"]')) item.href = canvas.toDataURL("image/png");
+    }
+    img.src = URL.createObjectURL(new Blob([oldTwitterSvg], {type: "image/svg+xml"}));
 }
 changeFavicon();
 function checkArticle() {
