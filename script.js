@@ -22,7 +22,6 @@ function changeFavicon() {
         canvas.width = "128";
         canvas.height = "128";
         canvas.getContext("2d").drawImage(img, 0,11, 128, 105); // The svg is not a square, so a proprortion needs to be made (128 : 105). Then, to center the icon: (128-105)/2
-        console.log(canvas, canvas.toDataURL("image/png"));
         for (let item of document.querySelectorAll('link[rel*="icon"]')) item.href = canvas.toDataURL("image/png");
     }
     img.src = URL.createObjectURL(new Blob([oldTwitterSvg], {type: "image/svg+xml"}));
